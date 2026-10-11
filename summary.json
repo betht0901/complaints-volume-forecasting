@@ -1,0 +1,86 @@
+{
+  "first_observation_date": "2023-01-01",
+  "last_observation_date": "2025-12-31",
+  "calendar_days": 1096,
+  "missing_target_calendar_days": 53,
+  "selected_model": "calendar_ridge",
+  "forecast_start": "2026-01-01",
+  "forecast_end": "2026-03-31",
+  "expected_90_day_total": 10201,
+  "validation": [
+    {
+      "model": "weekday_28d",
+      "train_end": "2025-04-05",
+      "test_start": "2025-04-06",
+      "test_end": "2025-07-04",
+      "MAE": 22.69,
+      "RMSE": 27.278,
+      "WAPE_pct": 24.81,
+      "actual_days": 88
+    },
+    {
+      "model": "calendar_ridge",
+      "train_end": "2025-04-05",
+      "test_start": "2025-04-06",
+      "test_end": "2025-07-04",
+      "MAE": 20.314,
+      "RMSE": 25.244,
+      "WAPE_pct": 22.21,
+      "actual_days": 88
+    },
+    {
+      "model": "weekday_28d",
+      "train_end": "2025-07-04",
+      "test_start": "2025-07-05",
+      "test_end": "2025-10-02",
+      "MAE": 25.166,
+      "RMSE": 31.328,
+      "WAPE_pct": 31.05,
+      "actual_days": 86
+    },
+    {
+      "model": "calendar_ridge",
+      "train_end": "2025-07-04",
+      "test_start": "2025-07-05",
+      "test_end": "2025-10-02",
+      "MAE": 23.352,
+      "RMSE": 29.677,
+      "WAPE_pct": 28.81,
+      "actual_days": 86
+    },
+    {
+      "model": "weekday_28d",
+      "train_end": "2025-10-02",
+      "test_start": "2025-10-03",
+      "test_end": "2025-12-31",
+      "MAE": 29.773,
+      "RMSE": 37.218,
+      "WAPE_pct": 27.64,
+      "actual_days": 87
+    },
+    {
+      "model": "calendar_ridge",
+      "train_end": "2025-10-02",
+      "test_start": "2025-10-03",
+      "test_end": "2025-12-31",
+      "MAE": 24.325,
+      "RMSE": 30.668,
+      "WAPE_pct": 22.58,
+      "actual_days": 87
+    }
+  ],
+  "comparison_mean": [
+    {
+      "model": "calendar_ridge",
+      "MAE": 22.663666666666668,
+      "RMSE": 28.529666666666667,
+      "WAPE_pct": 24.53333333333333
+    },
+    {
+      "model": "weekday_28d",
+      "MAE": 25.876333333333335,
+      "RMSE": 31.941333333333333,
+      "WAPE_pct": 27.833333333333332
+    }
+  ]
+}

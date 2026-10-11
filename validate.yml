@@ -1,0 +1,26 @@
+name: Validate Python forecasting project
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test-and-run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Run tests
+        run: python -m unittest discover -s tests -v
+      - name: Regenerate forecasts from source dataset
+        run: python forecast.py --input data/assessment.xlsx --output outputs
+      - name: Verify the expected forecast length
+        run: python -c "import pandas as pd; x=pd.read_csv('outputs/forecast_90_days.csv'); assert len(x)==90; assert x.predicted_complaints.notna().all()"

@@ -24,3 +24,6 @@ jobs:
         run: python forecast.py --input data/assessment.xlsx --output outputs
       - name: Verify the expected forecast length
         run: python -c "import pandas as pd; x=pd.read_csv('outputs/forecast_90_days.csv'); assert len(x)==90; assert x.predicted_complaints.notna().all()"
+
+      - name: Confirm regenerated results match committed outputs
+        run: git diff --exit-code -- outputs/forecast_90_days.csv outputs/backtest_metrics.csv outputs/model_comparison.csv outputs/summary.json

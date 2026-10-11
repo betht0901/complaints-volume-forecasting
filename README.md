@@ -31,7 +31,7 @@ python forecast.py --input data/assessment.xlsx --output outputs
 - Calendar regression assumes broad trends and seasonality remain reasonably stable. The baseline adapts rapidly but may miss longer-term growth. Compare fold results before adopting a model.
 - Bank holidays could improve a future iteration if a verified regional holiday calendar is available for both historical and forecast periods. The provided `bank_holiday_flag` is approximate and cannot be carried forward as actual observations.
 - Anomalies, policy changes, or operational incidents could break historical patterns. Production use should include updated forecasts, monitoring, and uncertainty bands. A further enhancement would calibrate an empirical prediction interval from **out-of-sample 90-day residuals** rather than claiming that point forecasts are certain.
-- This is a short, transparent assessment solution, not an end-to-end production service. For production: tests/CI, a pinned environment, monitoring, and agreed capacity thresholds should be added.
+- This is a short, transparent assessment solution, not an end-to-end production service. For production: environment pinning, monitoring, and agreed capacity thresholds should be added. This repository includes core tests and a simple CI workflow.
 
 ## Interpretation for the hiring panel
 The target is an operational **volume** measure, not service quality. MAE quantifies the typical number of complaints by which a daily forecast differs from the actual value. Teams can aggregate the exported daily forecast into weekly staffing demand and add a separately agreed service-level buffer. A 90-day horizon is materially harder than a one-day-ahead problem, so model selection is validated using the same horizon.
@@ -65,14 +65,10 @@ python -m unittest discover -s tests -v
 ```
 The GitHub Actions workflow performs this validation, then reruns the complete forecasting script on every push and pull request. Output files are committed as an interview-friendly snapshot; the script remains the source of truth.
 
-## Publishing to GitHub
-Create an **empty public repository** named `complaints-volume-forecasting` (do not add a README or `.gitignore` during creation). From the project folder run:
-```bash
-git init
-git add .
-git commit -m "Add reproducible complaints forecasting assessment"
-git branch -M main
-git remote add origin https://github.com/YOUR-USERNAME/complaints-volume-forecasting.git
-git push -u origin main
-```
-Replace `YOUR-USERNAME` with your GitHub username. Share the resulting `https://github.com/YOUR-USERNAME/complaints-volume-forecasting` URL with the assessor. Do not include credentials or tokens in the repository. Check that the supplied dataset is permitted to be posted publicly before uploading it.
+## Submission
+
+Public GitHub repository: https://github.com/betht0901/complaints-volume-forecasting
+
+To reproduce the results, install the dependencies and run `python forecast.py` from the repository root. See the quick-start instructions above.
+
+Only publish the supplied workbook if its distribution is authorised by the assessment provider.
